@@ -1,0 +1,19 @@
+#headtitle{
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+    margin: auto;
+}
+.headingDiv button{
+    font-size: 30px;
+    align-self:flex-start;
+    margin-top: auto;
+}
+.headingDiv{
+    display: flex;
+}
+
+.container{
+    margin: auto;
+    padding: 1%;
+}
