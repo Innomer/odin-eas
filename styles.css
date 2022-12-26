@@ -1,19 +1,66 @@
-#headtitle{
-    text-align: center;
-    align-items: center;
-    font-size: 30px;
-    margin: auto;
-}
-.headingDiv button{
-    font-size: 30px;
-    align-self:flex-start;
-    margin-top: auto;
-}
-.headingDiv{
-    display: flex;
+* {
+    padding: 0%;
+    margin: 0%;
 }
 
-.container{
+.container {
+    font-size: 30px;
     margin: auto;
     padding: 1%;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.playArea {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    padding: 2%;
+}
+
+.controlPanel {
+    background-color: rgb(34, 34, 34);
+    color: yellow;
+    font-weight: 900;
+    font-size: 25px;
+    padding: 5%;
+}
+
+.controlPanel p {
+    margin-bottom: 30px;
+}
+
+#sizeViewer {
+    font-size: 15px;
+    margin: auto;
+}
+
+.grid {
+    width: 500px;
+    height: 500px;
+    padding: 1%;
+    margin: auto;
+    display: grid;
+    background-color: rgb(34, 34, 34);
+}
+
+body {
+    background-color: rgb(22, 22, 22);
+}
+
+.headingDiv {
+    color: yellow;
+    margin-top: 100px;
+    text-align: center;
+}
+#resetButton{
+    font-size: 20px;
+    margin: auto;
+    padding: 5%;
+    margin-top: 40px;
+    font-weight: 500;
+    background-color: yellow;
+    border-radius: 10%;
 }

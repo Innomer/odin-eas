@@ -1,41 +1,50 @@
-var containerDiv = document.querySelector('.container');
-function createGridNew(n) {
-    n=Number(prompt("Enter x for x by x grid"));
-    containerDiv.innerHTML='';
-    var subDiv = document.createElement('div');
-    subDiv.className = "grid-container";
-    subDiv.style.display = "grid";
-    subDiv.style["grid-template-columns"] = "repeat(16,1fr)";
-    for (let i = 1; i <= n * n; i++) {
-        let gridBox = document.createElement('div');
-        gridBox.className = 'grid-item' + i;
-        gridBox.style.alignItems = "center";
-        gridBox.style.textAlign = "center";
-        gridBox.innerText = "";
-        gridBox.style.backgroundColor = "white";
-        gridBox.innerText = i;
-        gridBox.style.color = gridBox.style.backgroundColor;
-        gridBox.style.fontSize = "30px";
-        // gridBox.addEventListener("mouseover",idkwhatishappening(gridBox));
-        // gridBox.addEventListener("mouseout",changeColorBack(gridBox));
-        gridBox.style.border = "2px solid black";
-        gridBox.setAttribute("onmouseover", "TrailStart(this)");
-        gridBox.setAttribute("onmouseout", "TrailEnd(this)");
-        subDiv.appendChild(gridBox);
+const gridCon = document.querySelector('.grid')
+const valSlider = document.querySelector('#myRange');
+var sizeViewer = document.querySelector('#sizeViewer');
+var mouseDow = false;
+valSlider.setAttribute('onchange', 'clearGrid()');
+
+function createDiv(size) {
+    let subDiv = document.createElement('div');
+    subDiv.style.width = size;
+    subDiv.className = "item";
+    subDiv.style.fontSize = '10px';
+    subDiv.style.border = "1px solid rgb(156, 156, 156)";
+    subDiv.style['backgroundColor'] = 'white';
+    subDiv.setAttribute('onmousedown', 'onMouseOverColorCheck(this)');
+    subDiv.setAttribute('onmouseover', 'onMouseOverColorCheck(this)');
+    subDiv.setAttribute('onmouseup', 'mouseUp()');
+    subDiv.draggable = false;
+    return subDiv;
+}
+
+function onMouseOverColorCheck(subDiv) {
+    if (mouseDow) {
+        subDiv.style.backgroundColor = 'black';
     }
-    containerDiv.appendChild(subDiv);
 }
 
-function TrailStart(gB) {
-    console.log(gB.id);
-    gB.style.backgroundColor = "black";
-    gB.style.color = gB.style.backgroundColor;
+function mouseDown() {
+    mouseDow = true;
+}
+function mouseUp() {
+    mouseDow = false;
 }
 
-function TrailEnd(gB) {
-    gB.style.backgroundColor = "white";
-    gB.style.color = gB.style.backgroundColor;
+function clearGrid() {
+    gridCon.textContent = '';
+    createGrid(valSlider.value);
 }
 
-const newButton = document.getElementsByTagName("button");
-newButton[0].addEventListener('click',createGridNew);
+function setSizeViewer(n) {
+    sizeViewer.innerText = "Grid Size: " + n;
+}
+function createGrid(n) {
+    setSizeViewer(n);
+    gridCon.style["grid-template-columns"] = 'repeat(' + n + ',1fr)';
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            gridCon.appendChild(createDiv(gridCon.clientWidth / n));
+        }
+    }
+}

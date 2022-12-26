@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" onmouseup="mouseUp()" onmousedown="mouseDown()">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,28 @@
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="headingDiv">
-        <button>New</button>
-        <div id="headtitle">
+    <div class="container" >
+        <div class="headingDiv">
             <p>Etch-A-Sketch</p>
         </div>
-    </div>
-    <div class="container">
+        <div class="playArea" draggable="false">
+            <div class="controlPanel">
+                <p>Controls</p>
+                <div class="slidecontainer">
+                    <p id="sizeViewer">Grid Size:</p>
+                    <input type="range" min="1" max="100" value="16" class="slider" id="myRange" step="1">
+                </div>
+                <div>
+                    <button id="resetButton" onclick="clearGrid()">Clear</button>
+                </div>
+            </div>
+            <div class="grid" draggable="false">
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
