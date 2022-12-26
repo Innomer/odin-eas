@@ -2,6 +2,8 @@ const gridCon = document.querySelector('.grid')
 const valSlider = document.querySelector('#myRange');
 var sizeViewer = document.querySelector('#sizeViewer');
 var mouseDow = false;
+var erase = false;
+var randomColorEnable = false;
 valSlider.setAttribute('onchange', 'clearGrid()');
 
 function createDiv(size) {
@@ -11,6 +13,7 @@ function createDiv(size) {
     subDiv.style.fontSize = '10px';
     subDiv.style.border = "1px solid rgb(156, 156, 156)";
     subDiv.style['backgroundColor'] = 'white';
+    subDiv.setAttribute('onclick', 'onMouseOverColorCheck(this)');
     subDiv.setAttribute('onmousedown', 'onMouseOverColorCheck(this)');
     subDiv.setAttribute('onmouseover', 'onMouseOverColorCheck(this)');
     subDiv.setAttribute('onmouseup', 'mouseUp()');
@@ -18,9 +21,45 @@ function createDiv(size) {
     return subDiv;
 }
 
+function getRandomColor() {
+    var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return randomColor;
+}
+
+function randomColorGenerator(but) {
+    if(randomColorEnable)
+    {
+        randomColorEnable=false;
+        but.classList.remove('randomButtonToggled');
+    }
+    else{
+        randomColorEnable=true;
+        but.classList.add('randomButtonToggled');
+    }
+}
+
 function onMouseOverColorCheck(subDiv) {
     if (mouseDow) {
-        subDiv.style.backgroundColor = 'black';
+        if (!erase) {
+            if (!randomColorEnable)
+                subDiv.style.backgroundColor = 'black';
+            else {
+                subDiv.style.backgroundColor='#'+getRandomColor();
+            }
+        }
+        else
+            subDiv.style.backgroundColor = 'white';
+    }
+}
+
+function eraser(eraserButton) {
+    if (erase) {
+        erase = false;
+        eraserButton.classList.remove('eraserButtonToggled');
+    }
+    else {
+        erase = true;
+        eraserButton.classList.add('eraserButtonToggled');
     }
 }
 
